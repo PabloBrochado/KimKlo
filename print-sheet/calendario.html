@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendario de campaña — KimKlo</title>
+<style>
+  @page { size: A4; margin: 12mm 12mm 14mm; }
+
+  :root { --ink: #2b2420; --muted: #7a6e66; --line: #d9cfc6; --accent: #c8794a; --soft: #f6efe7; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; color: var(--ink); font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9pt; }
+  body { background: #ece7e1; }
+  .doc { width: 210mm; margin: 16px auto; padding: 12mm; background: #fffdf9; box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+
+  .toolbar { position: sticky; top: 0; z-index: 1; display: flex; justify-content: center; padding: 12px; background: var(--ink); }
+  .toolbar button { font: inherit; font-size: 13px; padding: 8px 16px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 2px solid var(--accent); padding-bottom: 3mm; margin-bottom: 4mm; }
+  header h1 { margin: 0; font-size: 19pt; }
+  header p { margin: 1mm 0 0; color: var(--muted); }
+  header .brand { font-size: 8.5pt; color: var(--muted); text-align: right; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 2mm 4mm; margin-bottom: 4mm; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th { text-align: left; font-size: 7.5pt; text-transform: uppercase; letter-spacing: .8px;
+    color: var(--muted); font-weight: 600; padding: 1.5mm 2mm; border-bottom: 1.5px solid var(--ink); }
+  td { padding: 1.8mm 2mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr { break-inside: avoid; }
+  tr.week td { background: var(--soft); font-weight: 700; color: var(--accent); text-transform: uppercase;
+    letter-spacing: 1px; font-size: 8pt; padding-top: 2.5mm; }
+  tr.week.first td { border-top: 0; }
+  .ok { width: 7mm; }
+  .ok span { display: inline-block; width: 3.6mm; height: 3.6mm; border: 1px solid var(--ink); border-radius: .6mm; }
+  .date { width: 20mm; white-space: nowrap; font-weight: 600; }
+  .time { width: 11mm; color: var(--muted); }
+  .what { font-weight: 600; }
+  .what small { display: block; font-weight: 400; color: var(--muted); margin-top: .5mm; }
+  .res { width: 30mm; }
+  .tags { width: 46mm; }
+
+  .tag { display: inline-block; padding: .4mm 1.6mm; border-radius: 1.2mm; font-size: 7.5pt; font-weight: 600;
+    margin: 0 .8mm .8mm 0; color: #fff; white-space: nowrap; }
+  .tt { background: #2b2420; } .ig { background: #b5527a; } .yt { background: #c0392b; }
+  .pin { background: #a83232; } .th { background: #5d5650; } .rd { background: #d4602a; }
+  .web { background: #4f7a6b; } .mail { background: #6b7fa8; } .md { background: #8a9a7b; }
+  .prod { background: #c8794a; } .rev { background: #9a8f86; } .ads { background: #7a5ea8; }
+
+  .tips { margin-top: 5mm; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; break-inside: avoid; }
+  .tips div { border: 1px solid var(--line); border-radius: 2mm; padding: 3mm; }
+  .tips h3 { margin: 0 0 1.5mm; font-size: 8pt; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
+  .tips ul { margin: 0; padding-left: 4mm; } .tips li { margin-bottom: .8mm; }
+  .write { height: 5.5mm; border-bottom: 1px solid var(--line); }
+
+  @media print {
+    body { background: none; }
+    .toolbar { display: none; }
+    .doc { width: auto; margin: 0; padding: 0; box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">Imprimir / PDF</button></div>
+<div class="doc">
+  <header>
+    <div>
+      <h1>«Cada gato tiene su color»</h1>
+      <p>Calendario de publicaciones · 8 oct – 8 nov 2026</p>
+    </div>
+    <div class="brand">Kim &amp; Klóe · KimKlo<br>kimklo.com</div>
+  </header>
+
+  <div class="legend" id="legend"></div>
+
+  <table>
+    <thead><tr><th>✓</th><th>Fecha</th><th>Hora</th><th>Medios</th><th>Qué publicamos</th><th>Resultado</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <section class="tips">
+    <div>
+      <h3>En cada vídeo</h3>
+      <ul>
+        <li>Gancho en los primeros 2 s, sin logo al inicio.</li>
+        <li>Texto en pantalla siempre (muchos lo ven sin sonido).</li>
+        <li>Audio en tendencia y cortes al ritmo.</li>
+        <li>Terminar con una pregunta: «¿Cuál es tu favorito?»</li>
+        <li>Hashtags: #catsoftiktok #colorpalette #gatos #paletadecolores</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Notas / ideas nuevas</h3>
+      <div class="write"></div><div class="write"></div><div class="write"></div>
+      <div class="write"></div><div class="write"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const CH = {
+    tt: 'TikTok', ig: 'Instagram', yt: 'YouTube Shorts', pin: 'Pinterest', th: 'Threads / X',
+    rd: 'Reddit', web: 'Web', mail: 'Correo', md: 'Mensajes directos', prod: 'Producción',
+    rev: 'Revisión', ads: 'Anuncio pagado'
+  };
+  const VIDEO = ['tt', 'ig', 'yt'];
+  const ALL = ['tt', 'ig', 'yt', 'pin', 'th'];
+
+  // [fecha, hora, medios, qué, detalle]
+  const PLAN = [
+    ['Semana 0 · Preparación'],
+    ['Jue 8 oct', '—', ['prod'], 'Grabar planos de Kim, Klóe y Mimí', 'Ojos, pelaje, gestos, primeros planos'],
+    ['Vie 9 oct', '—', ['prod'], 'Rellenar las 3 hojas de paleta', 'Nombre, HEX y RGB de cada color'],
+    ['Sáb 10 oct', '—', ['prod'], 'Editar vídeos 1, 2 y 3', 'Dejar textos y descripciones preparados'],
+    ['Dom 11 oct', '—', ['web'], 'Página de las paletas lista en kimklo.com', 'Tiene que estar antes del lanzamiento'],
+
+    ['Semana 1 · Presentamos a cada gato'],
+    ['Lun 12 oct', '19:00', VIDEO, 'Vídeo 1: «Si Kim fuera una paleta de colores»', 'Mismo día en los 3 canales'],
+    ['Mar 13 oct', '19:00', ['pin', 'th'], 'Pin de la paleta de Kim · «Conoce a Kim»', 'Pin enlazado a kimklo.com'],
+    ['Mié 14 oct', '19:00', VIDEO, 'Vídeo 2: «Si Klóe fuera una paleta de colores»'],
+    ['Jue 15 oct', '19:00', ['pin', 'ig'], 'Pin de Klóe · Stories con encuesta', '«¿Kim o Klóe?»'],
+    ['Vie 16 oct', '19:00', VIDEO, 'Vídeo 3: «Si Mimí fuera una paleta de colores»'],
+    ['Sáb 17 oct', '12:00', ['pin', 'th'], 'Pin de Mimí · «¿Cuál es tu favorito?»'],
+    ['Dom 18 oct', '—', ['rev'], 'Revisión semanal', '¿Qué vídeo funcionó mejor? Repetir su gancho'],
+
+    ['Semana 2 · Las tres juntas'],
+    ['Lun 19 oct', '19:00', ALL, 'Vídeo 4: «Las 3 paletas juntas. ¿Cuál es la tuya?»'],
+    ['Mié 21 oct', '19:00', ['ig'], 'Carrusel: la historia de cada gato y sus colores'],
+    ['Jue 22 oct', '18:00', ['rd'], 'Publicación en r/cats y r/colorpalettes', 'Sin enlace; contar la historia'],
+    ['Vie 23 oct', '19:00', ['ig', 'th'], 'Votación: «¿Qué paleta te representa?»'],
+    ['Sáb 24 oct', '12:00', ['pin'], 'Pin con las 3 paletas'],
+    ['Dom 25 oct', '—', ['rev'], 'Revisión · elegir 3 gatos de comentarios', 'Para la serie «La paleta de tu gato»'],
+
+    ['Semana 3 · La paleta de TU gato'],
+    ['Lun 26 oct', '19:00', VIDEO, '«La paleta de tu gato» #1', 'Responder en vídeo a un comentario'],
+    ['Mar 27 oct', '—', ['md'], 'Contactar 5 cuentas de gatos para colaborar'],
+    ['Mié 28 oct', '19:00', VIDEO, '«La paleta de tu gato» #2'],
+    ['Jue 29 oct', '—', ['md', 'mail'], 'Contactar 5 cuentas más · primer correo a la lista'],
+    ['Vie 30 oct', '19:00', VIDEO, '«La paleta de tu gato» #3'],
+    ['Sáb 31 oct', '19:00', ALL, 'Especial Halloween: paleta de Halloween de los 3', 'Aprovechar la fecha'],
+    ['Dom 1 nov', '—', ['rev'], 'Revisión semanal'],
+
+    ['Semana 4 · Recopilación y cierre'],
+    ['Lun 2 nov', '19:00', ALL, 'Recopilación: «Las paletas de vuestros gatos»'],
+    ['Mié 4 nov', '19:00', ['tt', 'ig'], 'Detrás de cámaras: cómo hacemos las paletas', 'Enseñar la hoja de paleta'],
+    ['Jue 5 nov', '19:00', VIDEO, '«La paleta de tu gato» #4'],
+    ['Vie 6 nov', '—', ['ads'], 'Promocionar el mejor vídeo (opcional)', 'Solo si supera la media orgánica'],
+    ['Sáb 7 nov', '12:00', ['pin', 'th'], 'Pin de la recopilación · agradecer a la comunidad'],
+    ['Dom 8 nov', '—', ['rev'], 'Cierre: anotar resultados finales', 'Visualizaciones, seguidores, comentarios'],
+  ];
+
+  const tags = list => list.map(c => `<span class="tag ${c}">${CH[c]}</span>`).join('');
+  document.getElementById('legend').innerHTML = tags(Object.keys(CH));
+
+  let first = true;
+  document.getElementById('rows').innerHTML = PLAN.map(([date, time, ch, what, note]) => {
+    if (!time) { const r = `<tr class="week${first ? ' first' : ''}"><td colspan="6">${date}</td></tr>`; first = false; return r; }
+    return `<tr><td class="ok"><span></span></td><td class="date">${date}</td><td class="time">${time}</td>
+      <td class="tags">${tags(ch)}</td><td class="what">${what}${note ? `<small>${note}</small>` : ''}</td><td class="res"></td></tr>`;
+  }).join('');
+</script>
+</body>
+</html>
