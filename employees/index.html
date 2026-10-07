@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Employees &amp; Relax Space — KimKlo</title>
+<style>
+  :root {
+    --ink: #2b2420; --muted: #7a6e66; --line: #e3d8ce; --paper: #fffdf9; --bg: #f4eee7;
+    --accent: #c8794a; --kim: #3d332d; --kloe: #c8794a; --mimi: #7f9070;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: "Helvetica Neue", Arial, sans-serif; line-height: 1.45; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  /* Cabecera */
+  .top { background: var(--ink); color: #f6ede4; }
+  .top nav { display: flex; gap: 16px; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 14px; }
+  .top nav .logo { font-weight: 800; letter-spacing: .5px; text-decoration: none; }
+  .top nav .links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .top nav .links a { text-decoration: none; opacity: .85; }
+  .top nav .links a:hover { opacity: 1; text-decoration: underline; }
+  .hero { padding: 40px 0 48px; text-align: center; }
+  .hero h1 { margin: 0; font-size: clamp(30px, 6vw, 52px); line-height: 1.05; }
+  .hero .tag { display: inline-block; margin-top: 14px; padding: 6px 14px; border: 1.5px dashed #f6ede4; border-radius: 999px; font-weight: 700; transform: rotate(-2deg); }
+  .hero p { max-width: 560px; margin: 16px auto 0; opacity: .85; }
+
+  section { padding: 44px 0 8px; }
+  section > .wrap > h2 { font-size: 26px; margin: 0 0 4px; }
+  section > .wrap > .sub { color: var(--muted); margin: 0 0 22px; }
+
+  /* Fichas de empleado */
+  .staff { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .card { background: var(--paper); border-radius: 18px; overflow: hidden; box-shadow: 0 2px 0 var(--line), 0 10px 24px rgba(43,36,32,.08); display: flex; flex-direction: column; }
+  .card .band { background: var(--c); color: #fff; padding: 10px 16px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .card .head { display: flex; gap: 14px; padding: 16px; align-items: center; }
+  .photo { width: 92px; height: 92px; flex: none; border-radius: 14px; background: color-mix(in srgb, var(--c) 18%, white); display: grid; place-items: center; font-size: 46px; overflow: hidden; border: 3px solid var(--c); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .card h3 { margin: 0; font-size: 24px; }
+  .card .role { color: var(--c); font-weight: 700; font-size: 14px; }
+  .card .role-en { color: var(--muted); font-size: 12px; font-style: italic; }
+  .card dl { margin: 0; padding: 0 16px; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 14px; }
+  .card dt { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding-top: 2px; }
+  .card dd { margin: 0; }
+  .card blockquote { margin: 14px 16px 0; padding: 10px 12px; background: var(--bg); border-left: 4px solid var(--c); border-radius: 6px; font-style: italic; font-size: 14px; }
+  .card .foot { margin-top: auto; padding: 14px 16px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .card .paid { font-size: 13px; color: var(--muted); }
+  .btn { font: inherit; font-weight: 700; border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; background: var(--c, var(--accent)); color: #fff; transition: transform .1s; }
+  .btn:active { transform: scale(.95); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .stamp { position: absolute; font-size: 22px; pointer-events: none; animation: up .9s ease-out forwards; }
+  @keyframes up { to { transform: translateY(-60px); opacity: 0; } }
+
+  /* Relax Space */
+  .relax { background: var(--paper); margin-top: 40px; padding-bottom: 44px; }
+  .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .game-card { border: 1.5px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 10px; background: #fff; }
+  .game-card .icon { font-size: 40px; }
+  .game-card h3 { margin: 0; font-size: 20px; }
+  .game-card .host { font-size: 13px; color: var(--muted); }
+  .game-card .host b { color: var(--c); }
+  .game-card p { margin: 0; font-size: 14px; }
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: 12px; background: var(--bg); padding: 3px 10px; border-radius: 999px; }
+  .game-card .row { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 6px; }
+  .best { font-size: 13px; color: var(--muted); }
+
+  /* Ventana del juego */
+  dialog { border: 0; border-radius: 20px; padding: 0; width: min(560px, calc(100vw - 32px)); background: var(--paper); color: var(--ink); }
+  dialog::backdrop { background: rgba(43,36,32,.6); }
+  .dlg-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .dlg-head h3 { margin: 0; font-size: 18px; }
+  .x { font-size: 22px; background: none; border: 0; cursor: pointer; color: var(--ink); }
+  .hud { display: flex; justify-content: space-between; padding: 10px 18px; font-weight: 700; font-size: 14px; }
+  .stage { position: relative; margin: 0 18px; height: 340px; border-radius: 14px; background: var(--bg); overflow: hidden; user-select: none; touch-action: manipulation; }
+  .dlg-foot { padding: 14px 18px 18px; display: flex; justify-content: center; gap: 10px; }
+  .msg { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; font-size: 18px; font-weight: 700; background: rgba(255,253,249,.92); z-index: 5; }
+  .msg small { display: block; font-weight: 400; font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  .target { position: absolute; font-size: 40px; cursor: pointer; background: none; border: 0; padding: 4px; line-height: 1; animation: pop .15s ease-out; }
+  @keyframes pop { from { transform: scale(.3); } }
+
+  .mem { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; height: 100%; }
+  .tile { border: 0; border-radius: 10px; font-size: 30px; cursor: pointer; background: var(--ink); color: transparent; transition: background .2s; }
+  .tile.open, .tile.done { background: #fff; color: inherit; }
+  .tile.done { opacity: .55; }
+
+  .tables { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px; height: 100%; }
+  .table { border: 0; border-radius: 12px; background: #e6d8c9; font-size: 34px; cursor: pointer; position: relative; }
+  .table.broken { background: #f0c9c0; }
+
+
+  /* Partes semanales y empleado de la semana */
+  .eotw { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; background: var(--paper);
+    border: 3px solid var(--c); border-radius: 22px; padding: 20px; position: relative; box-shadow: 0 10px 24px rgba(43,36,32,.08); }
+  .eotw .photo { width: 120px; height: 120px; font-size: 60px; }
+  .eotw .ribbon { position: absolute; top: -14px; left: 20px; background: var(--c); color: #fff; font-weight: 800; font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+  .eotw h3 { margin: 0; font-size: 28px; }
+  .eotw .why { margin: 6px 0 0; }
+  .eotw .prize { display: inline-block; margin-top: 10px; font-size: 13px; background: var(--bg); padding: 4px 10px; border-radius: 999px; }
+  .reports { margin-top: 22px; display: grid; gap: 10px; }
+  .report { background: var(--paper); border-left: 5px solid var(--c); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+  .report b { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--c); margin-bottom: 2px; }
+  .archive { margin-top: 18px; font-size: 14px; color: var(--muted); }
+  .archive summary { cursor: pointer; font-weight: 700; color: var(--ink); }
+  .archive li { margin: 4px 0; }
+  @media (max-width: 520px) { .eotw { grid-template-columns: 1fr; text-align: center; } .eotw .photo { margin: 0 auto; } }
+
+  footer { background: var(--ink); color: #f6ede4; text-align: center; padding: 36px 16px; }
+  footer h2 { margin: 0 0 8px; }
+  footer p { margin: 0 auto 18px; max-width: 520px; opacity: .85; }
+  footer .small { font-size: 12px; opacity: .6; margin-top: 22px; }
+
+  /* Impresión: solo las fichas de empleado, 3 por hoja A4 */
+  @page { size: A4; margin: 12mm; }
+  @media print {
+    body { background: #fff; }
+    .top, .relax, #partes, footer, .card .foot, section > .wrap > .sub, dialog { display: none !important; }
+    section { padding: 0; }
+    section > .wrap { max-width: none; padding: 0; }
+    section > .wrap > h2 { font-size: 16pt; margin-bottom: 4mm; }
+    .staff { display: block; }
+    .card { display: grid; grid-template-columns: 62mm 1fr; grid-template-rows: auto 1fr; height: 82mm; margin-bottom: 5mm;
+      box-shadow: none; border: 1px solid var(--line); break-inside: avoid; }
+    .card .band { grid-column: 1 / -1; }
+    .card .head { flex-direction: column; align-items: flex-start; }
+    .photo { width: 30mm; height: 30mm; }
+    .card dl { padding: 4mm 4mm 0 0; font-size: 9.5pt; align-content: start; }
+    .card blockquote { grid-column: 2; margin: 2mm 4mm 0 0; font-size: 9pt; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="https://kimklo.com">KIM &amp; KLÓE</a>
+      <div class="links">
+        <a href="#partes">Partes</a>
+        <a href="#empleados">Employees</a>
+        <a href="#relax">Relax Space</a>
+        <a href="#apoyo">Pay their salary 🐟</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <h1>Employees &amp; Relax Space</h1>
+      <div class="tag">We Work for Food (or Tricks)</div>
+      <p>Conoce a la plantilla de KimKlo: tres profesionales que trabajan muy duro… entre siesta y siesta. Su sueldo lo pones tú.</p>
+    </div>
+  </div>
+</header>
+
+<section id="partes">
+  <div class="wrap">
+    <h2>Partes de la oficina</h2>
+    <p class="sub" id="partes-week"></p>
+    <div id="eotw"></div>
+    <div class="reports" id="reports"></div>
+    <details class="archive"><summary>Empleados de semanas anteriores</summary><ul id="archive"></ul></details>
+  </div>
+</section>
+
+<section id="empleados">
+  <div class="wrap">
+    <h2>Nuestros empleados</h2>
+    <p class="sub">Fichas oficiales de personal. Datos verificados por el Departamento de Recursos Gatunos.</p>
+    <div class="staff" id="staff"></div>
+  </div>
+</section>
+
+<section class="relax" id="relax">
+  <div class="wrap">
+    <h2>Relax Space</h2>
+    <p class="sub">La sala de descanso de la plantilla. Cada juego tiene su ficha y un empleado responsable.</p>
+    <div class="games" id="games"></div>
+  </div>
+</section>
+
+<footer id="apoyo">
+  <h2>Paga su sueldo 🐟</h2>
+  <p>Aquí no se cobra en euros: se cobra en likes, en compartir y en comentarios bonitos. Síguenos y la plantilla seguirá trabajando (o durmiendo).</p>
+  <!-- Cambia los enlaces por los perfiles reales de KimKlo -->
+  <a class="btn" style="--c:#c8794a" href="https://kimklo.com">Visitar kimklo.com</a>
+  <div class="small">© Kim &amp; Klóe — KimKlo. Personajes, nombres e imágenes son propiedad de KimKlo.</div>
+</footer>
+
+<dialog id="dlg">
+  <div class="dlg-head"><h3 id="dlg-title"></h3><button class="x" aria-label="Cerrar" onclick="closeGame()">×</button></div>
+  <div class="hud"><span id="hud-left"></span><span id="hud-right"></span></div>
+  <div class="stage" id="stage"></div>
+  <div class="dlg-foot"><button class="btn" id="dlg-start">Empezar</button><button class="btn ghost" onclick="closeGame()">Salir</button></div>
+</dialog>
+
+<script>
+// ───────── Datos de los empleados (edita aquí) ─────────
+// photo: pon la foto en employees/fotos/ con ese nombre. Si no existe, se muestra el emoji.
+const STAFF = [
+  {
+    id: 'kim', name: 'Kim', color: 'var(--kim)', emoji: '😴', photo: 'fotos/kim.jpg', number: '001',
+    role: 'Director de Siestas', roleEn: 'Chief Nap Officer',
+    schedule: '18 horas al día, sin pausas',
+    skill: 'Dormirse en 3 segundos en cualquier superficie',
+    salary: '2 latas al día + premios',
+    review: '★★★★★ — Nunca ha faltado a una siesta',
+    quote: 'Despiértame cuando haya atún.'
+  },
+  {
+    id: 'kloe', name: 'Klóe', color: 'var(--kloe)', emoji: '🥛', photo: 'fotos/kloe.jpg', number: '002',
+    role: 'Departamento de Gravedad', roleEn: 'Head of Gravity Research',
+    schedule: 'De 3:00 a 5:00 de la madrugada',
+    skill: 'Tirar cosas de la mesa con precisión milimétrica',
+    salary: '1 lata + todo lo que caiga al suelo',
+    review: '★★★★☆ — Batió un récord… y un vaso',
+    quote: 'Solo compruebo que la gravedad siga funcionando.'
+  },
+  {
+    id: 'mimi', name: 'Mimí', color: 'var(--mimi)', emoji: '🧐', photo: 'fotos/mimi.jpg', number: '003',
+    role: 'Control de Calidad', roleEn: 'Quality Control Manager',
+    schedule: 'Cada vez que el plato está vacío',
+    skill: 'Detectar un plato vacío desde otra habitación',
+    salary: 'En negociación permanente',
+    review: '★★★★★ — Exigente, pero justa',
+    quote: 'Esto está medio vacío. Inaceptable.'
+  }
+];
+
+// ───────── Juegos del Relax Space ─────────
+const GAMES = [
+  { id: 'feed', icon: '🐟', title: 'Feed the Staff', host: 'mimi', time: '30 s', level: 'Fácil',
+    how: 'Toca los peces antes de que desaparezcan para pagar el sueldo de la plantilla. ¡Cuidado con la aspiradora!' },
+  { id: 'memory', icon: '🧶', title: 'Memoria de la Siesta', host: 'kim', time: 'Sin límite', level: 'Media',
+    how: 'Kim ha escondido sus cosas favoritas. Encuentra todas las parejas con el menor número de intentos.' },
+  { id: 'gravity', icon: '🥛', title: '¿Quién tiró el vaso?', host: 'kloe', time: '30 s', level: 'Difícil',
+    how: 'Klóe aparece en las mesas con un vaso. Tócala antes de que lo tire. Cada vez va más rápido.' }
+];
+
+// ───────── Partes semanales (añade una semana nueva ARRIBA del todo) ─────────
+// winner: id del empleado (kim, kloe, mimi). reports: los partes de esa semana.
+const WEEKS = [
+  {
+    week: 'Semana del 5 al 11 de octubre de 2026',
+    winner: 'mimi',
+    why: 'Por detectar un plato medio vacío a las 6:03 de la mañana y avisar a toda la casa. Profesionalidad absoluta.',
+    prize: '🏆 Premio: una lata extra y 10 minutos de mimos',
+    reports: [
+      { who: 'kloe', text: 'Parte de incidencias: 2 bolígrafos, 1 tapón y 1 vaso (vacío, por suerte) tirados de la mesa. Klóe alega «investigación».' },
+      { who: 'kim', text: 'Parte de asistencia: Kim no ha faltado a ninguna siesta. Se le ha visto despierto 4 veces, todas a la hora de comer.' },
+      { who: 'mimi', text: 'Parte de calidad: Mimí ha rechazado 3 comidas «por presentación». Se estudia su queja.' }
+    ]
+  }
+];
+
+const byId = id => STAFF.find(s => s.id === id);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('kimklo-' + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('kimklo-' + k, JSON.stringify(v)); } catch {} }
+};
+
+
+// Pintar partes y empleado de la semana
+(function renderWeeks() {
+  const [now, ...old] = WEEKS, w = byId(now.winner);
+  document.getElementById('partes-week').textContent = now.week;
+  document.getElementById('eotw').innerHTML = `
+    <div class="eotw" style="--c:${w.color}">
+      <span class="ribbon">⭐ Empleado de la semana</span>
+      <div class="photo"><img src="${w.photo}" alt="${w.name}" onerror="this.replaceWith(document.createTextNode('${w.emoji}'))"></div>
+      <div><h3>${w.name}</h3><div class="role" style="color:var(--c);font-weight:700">${w.role}</div>
+        <p class="why">${now.why}</p><span class="prize">${now.prize}</span></div>
+    </div>`;
+  document.getElementById('reports').innerHTML = now.reports.map(r => {
+    const e = byId(r.who); return `<div class="report" style="--c:${e.color}"><b>${e.name}</b>${r.text}</div>`;
+  }).join('');
+  const arch = document.getElementById('archive');
+  arch.innerHTML = old.length ? old.map(o => `<li>${o.week}: <b>${byId(o.winner).name}</b> — ${o.why}</li>`).join('') : '<li>Esta es la primera semana. ¡Historia en construcción!</li>';
+})();
+
+// Pintar fichas de empleado
+document.getElementById('staff').innerHTML = STAFF.map(s => `
+  <article class="card" style="--c:${s.color}">
+    <div class="band"><span>KimKlo Staff</span><span>ID ${s.number}</span></div>
+    <div class="head">
+      <div class="photo"><img src="${s.photo}" alt="${s.name}" onerror="this.replaceWith(document.createTextNode('${s.emoji}'))"></div>
+      <div><h3>${s.name}</h3><div class="role">${s.role}</div><div class="role-en">${s.roleEn}</div></div>
+    </div>
+    <dl>
+      <dt>Horario</dt><dd>${s.schedule}</dd>
+      <dt>Habilidad</dt><dd>${s.skill}</dd>
+      <dt>Sueldo</dt><dd>${s.salary}</dd>
+      <dt>Evaluación</dt><dd>${s.review}</dd>
+    </dl>
+    <blockquote>«${s.quote}»</blockquote>
+    <div class="foot">
+      <span class="paid">🐟 <b id="paid-${s.id}">${store.get('paid-' + s.id, 0)}</b> premios pagados</span>
+      <button class="btn" onclick="pay('${s.id}', this)">Pagar sueldo</button>
+    </div>
+  </article>`).join('');
+
+function pay(id, btn) {
+  const n = store.get('paid-' + id, 0) + 1;
+  store.set('paid-' + id, n);
+  document.getElementById('paid-' + id).textContent = n;
+  const r = btn.getBoundingClientRect(), f = document.createElement('span');
+  f.className = 'stamp'; f.textContent = '🐟';
+  f.style.left = (r.left + r.width / 2 + scrollX - 11) + 'px'; f.style.top = (r.top + scrollY - 10) + 'px';
+  document.body.appendChild(f); setTimeout(() => f.remove(), 900);
+}
+
+// Pintar fichas de juego
+function renderGames() {
+  document.getElementById('games').innerHTML = GAMES.map(g => {
+    const h = byId(g.host), best = store.get('best-' + g.id, null);
+    return `
+    <article class="game-card" style="--c:${h.color}">
+      <div class="icon">${g.icon}</div>
+      <h3>${g.title}</h3>
+      <div class="host">Responsable: <b>${h.name}</b>, ${h.role}</div>
+      <div class="meta"><span class="chip">⏱ ${g.time}</span><span class="chip">🎯 ${g.level}</span></div>
+      <p>${g.how}</p>
+      <div class="row">
+        <span class="best">${best === null ? 'Sin récord todavía' : 'Tu récord: <b>' + best + '</b>'}</span>
+        <button class="btn" onclick="openGame('${g.id}')">Jugar</button>
+      </div>
+    </article>`;
+  }).join('');
+}
+renderGames();
+
+// ───────── Motor común de los juegos ─────────
+const dlg = document.getElementById('dlg'), stage = document.getElementById('stage');
+const hudL = document.getElementById('hud-left'), hudR = document.getElementById('hud-right');
+const startBtn = document.getElementById('dlg-start');
+let current = null, timers = [];
+
+const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+const every = (fn, ms) => timers.push(setInterval(fn, ms));
+const clearTimers = () => { timers.forEach(t => { clearTimeout(t); clearInterval(t); }); timers = []; };
+const rand = (a, b) => a + Math.random() * (b - a);
+const showMsg = (text, small = '') => { stage.insertAdjacentHTML('beforeend', `<div class="msg"><div>${text}<small>${small}</small></div></div>`); };
+
+function openGame(id) {
+  current = GAMES.find(g => g.id === id);
+  document.getElementById('dlg-title').textContent = current.icon + ' ' + current.title;
+  clearTimers(); stage.innerHTML = ''; hudL.textContent = ''; hudR.textContent = '';
+  showMsg(current.how, 'Responsable: ' + byId(current.host).name);
+  startBtn.textContent = 'Empezar';
+  dlg.showModal();
+}
+function closeGame() { clearTimers(); dlg.close(); renderGames(); }
+dlg.addEventListener('close', clearTimers);
+startBtn.onclick = () => { clearTimers(); stage.innerHTML = ''; ENGINES[current.id](); startBtn.textContent = 'Otra vez'; };
+
+// higherIsBetter: true → récord = máximo; false → récord = mínimo
+function finish(score, text, small, higherIsBetter = true) {
+  clearTimers();
+  const best = store.get('best-' + current.id, null);
+  const isRecord = best === null || (higherIsBetter ? score > best : score < best);
+  if (isRecord) store.set('best-' + current.id, score);
+  showMsg(text, (isRecord ? '🏆 ¡Nuevo récord! ' : '') + small);
+}
+
+function countdown(seconds, onEnd) {
+  let left = seconds; hudR.textContent = '⏱ ' + left + ' s';
+  every(() => { left--; hudR.textContent = '⏱ ' + left + ' s'; if (left <= 0) onEnd(); }, 1000);
+}
+
+const ENGINES = {
+  // Toca peces (+1); la aspiradora resta 2
+  feed() {
+    let score = 0; hudL.textContent = '🐟 0';
+    const spawn = () => {
+      const bad = Math.random() < .18, b = document.createElement('button');
+      b.className = 'target'; b.textContent = bad ? '🧹' : (Math.random() < .5 ? '🐟' : '🍤');
+      b.style.left = rand(4, 82) + '%'; b.style.top = rand(4, 78) + '%';
+      b.onclick = () => { score = Math.max(0, score + (bad ? -2 : 1)); hudL.textContent = '🐟 ' + score; b.remove(); };
+      stage.appendChild(b); later(() => b.remove(), bad ? 1300 : 950);
+    };
+    every(spawn, 520); spawn();
+    countdown(30, () => finish(score, `¡Has pagado ${score} premios!`,
+      score >= 25 ? 'Mimí aprueba el control de calidad.' : 'Mimí dice que el plato sigue medio vacío.'));
+  },
+
+  // Parejas de memoria; récord = menos intentos
+  memory() {
+    const icons = ['🐟', '🧶', '🐭', '📦', '🥛', '🛏️'];
+    const deck = [...icons, ...icons].sort(() => Math.random() - .5);
+    let open = [], found = 0, tries = 0, lock = false;
+    hudL.textContent = 'Intentos: 0'; hudR.textContent = 'Parejas: 0/6';
+    const grid = document.createElement('div'); grid.className = 'mem'; stage.appendChild(grid);
+    deck.forEach(icon => {
+      const t = document.createElement('button'); t.className = 'tile'; t.textContent = icon;
+      t.onclick = () => {
+        if (lock || t.classList.contains('open') || t.classList.contains('done')) return;
+        t.classList.add('open'); open.push(t);
+        if (open.length < 2) return;
+        tries++; hudL.textContent = 'Intentos: ' + tries;
+        const [a, b] = open; open = [];
+        if (a.textContent === b.textContent) {
+          a.classList.add('done'); b.classList.add('done'); found++;
+          hudR.textContent = `Parejas: ${found}/6`;
+          if (found === 6) later(() => finish(tries, `¡Encontrado en ${tries} intentos!`, 'Kim ya puede volver a dormir.', false), 400);
+        } else {
+          lock = true;
+          later(() => { a.classList.remove('open'); b.classList.remove('open'); lock = false; }, 700);
+        }
+      };
+      grid.appendChild(t);
+    });
+  },
+
+  // Klóe aparece con un vaso; tócala antes de que lo tire
+  gravity() {
+    let saved = 0, broken = 0, speed = 1500;
+    hudL.textContent = '🥛 Salvados: 0 · 💥 Rotos: 0';
+    const grid = document.createElement('div'); grid.className = 'tables'; stage.appendChild(grid);
+    const tables = Array.from({ length: 9 }, () => {
+      const t = document.createElement('button'); t.className = 'table'; grid.appendChild(t); return t;
+    });
+    const hud = () => hudL.textContent = `🥛 Salvados: ${saved} · 💥 Rotos: ${broken}`;
+    const spawn = () => {
+      const free = tables.filter(t => !t.dataset.busy);
+      if (!free.length) return;
+      const t = free[Math.floor(Math.random() * free.length)];
+      t.dataset.busy = '1'; t.textContent = '🐈🥛'; t.classList.remove('broken');
+      const fall = setTimeout(() => {
+        if (!t.dataset.busy) return;
+        delete t.dataset.busy; t.textContent = '💥'; t.classList.add('broken'); broken++; hud();
+        later(() => { if (!t.dataset.busy) { t.textContent = ''; t.classList.remove('broken'); } }, 500);
+      }, speed);
+      timers.push(fall);
+      t.onclick = () => {
+        if (!t.dataset.busy) return;
+        clearTimeout(fall); delete t.dataset.busy; t.textContent = '😾'; saved++; hud();
+        later(() => { if (!t.dataset.busy) t.textContent = ''; }, 300);
+      };
+      speed = Math.max(650, speed - 25);
+    };
+    every(spawn, 700); spawn();
+    countdown(30, () => finish(saved, `Has salvado ${saved} vasos`,
+      `Se rompieron ${broken}. Klóe dice que lo hizo «por la ciencia».`));
+  }
+};
+</script>
+</body>
+</html>
