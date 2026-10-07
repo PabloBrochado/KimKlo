@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoja para imprimir — KimKlo</title>
+<style>
+  /* Tamaño de página: cambia a "Letter" si imprimes en carta */
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --ink: #2b2420;
+    --muted: #7a6e66;
+    --line: #d9cfc6;
+    --accent: #c8794a;
+    --paper: #fffdf9;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #ece7e1; color: var(--ink);
+    font-family: "Helvetica Neue", Arial, sans-serif; }
+
+  .toolbar { position: sticky; top: 0; display: flex; gap: 8px; justify-content: center;
+    padding: 12px; background: #2b2420; }
+  .toolbar button { font: inherit; padding: 8px 16px; border: 0; border-radius: 6px;
+    background: var(--accent); color: #fff; cursor: pointer; }
+  .toolbar span { color: #e9dfd6; align-self: center; font-size: 13px; }
+
+  .sheet { width: 210mm; min-height: 297mm; margin: 16px auto; padding: 16mm 15mm;
+    background: var(--paper); box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    display: flex; flex-direction: column; gap: 7mm; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 2px solid var(--accent); padding-bottom: 4mm; }
+  header h1 { margin: 0; font-size: 22pt; letter-spacing: .5px; }
+  header .brand { font-size: 10pt; color: var(--muted); text-align: right; }
+
+  .meta { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 5mm; }
+  .field label { display: block; font-size: 8pt; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--muted); margin-bottom: 1.5mm; }
+  .field .value { border-bottom: 1px solid var(--line); min-height: 8mm; padding: 1mm 0;
+    font-size: 11pt; outline: none; }
+
+  .row { display: grid; grid-template-columns: 70mm 1fr; gap: 6mm; }
+  .image-box { border: 1.5px dashed var(--line); border-radius: 4mm; height: 80mm;
+    display: flex; align-items: center; justify-content: center; color: var(--muted);
+    font-size: 9pt; text-align: center; overflow: hidden; cursor: pointer; }
+  .image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+  h2 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
+    margin: 0 0 2mm; }
+  .box { border: 1px solid var(--line); border-radius: 3mm; padding: 3mm 4mm; }
+  .lines { min-height: 30mm; outline: none; font-size: 10.5pt; line-height: 8mm;
+    background-image: linear-gradient(to bottom, transparent 7.6mm, var(--line) 7.6mm);
+    background-size: 100% 8mm; }
+
+  .swatches { display: flex; gap: 4mm; }
+  .swatch { flex: 1; text-align: center; font-size: 8pt; color: var(--muted); }
+  .swatch div { height: 14mm; border: 1px solid var(--line); border-radius: 2mm; margin-bottom: 1.5mm; }
+  .swatch input { width: 100%; height: 14mm; border: 1px solid var(--line); border-radius: 2mm;
+    padding: 0; background: none; cursor: pointer; }
+
+  .checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm 6mm; font-size: 10pt; }
+  .checks span::before { content: ""; display: inline-block; width: 3.5mm; height: 3.5mm;
+    border: 1px solid var(--ink); margin-right: 2mm; vertical-align: -0.5mm; }
+
+  footer { margin-top: auto; display: flex; justify-content: space-between; font-size: 8pt;
+    color: var(--muted); border-top: 1px solid var(--line); padding-top: 3mm; }
+
+  @media print {
+    html, body { background: none; }
+    .toolbar { display: none; }
+    .sheet { margin: 0; box-shadow: none; }
+    .image-box:not(:has(img)) { color: transparent; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span>Rellena los campos y pulsa imprimir (o «Guardar como PDF»)</span>
+    <button onclick="window.print()">Imprimir / PDF</button>
+  </div>
+
+  <main class="sheet">
+    <header>
+      <h1 contenteditable="true">Ficha de personaje</h1>
+      <div class="brand">Kim &amp; Klóe · KimKlo<br>kimklo.com</div>
+    </header>
+
+    <section class="meta">
+      <div class="field"><label>Nombre</label><div class="value" contenteditable="true"></div></div>
+      <div class="field"><label>Fecha</label><div class="value" contenteditable="true"></div></div>
+      <div class="field"><label>Versión</label><div class="value" contenteditable="true"></div></div>
+    </section>
+
+    <section class="row">
+      <label class="image-box" title="Haz clic para añadir una imagen">
+        <input type="file" accept="image/*" hidden>
+        <span>Imagen de referencia<br>(clic para añadir)</span>
+      </label>
+      <div style="display:flex; flex-direction:column; gap:5mm">
+        <div><h2>Personalidad</h2><div class="box lines" contenteditable="true"></div></div>
+        <div><h2>Rasgos físicos</h2><div class="box lines" contenteditable="true"></div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Paleta de colores</h2>
+      <div class="swatches">
+        <label class="swatch"><input type="color" value="#2b2420">Principal</label>
+        <label class="swatch"><input type="color" value="#c8794a">Acento</label>
+        <label class="swatch"><input type="color" value="#f1e3d3">Claro</label>
+        <label class="swatch"><input type="color" value="#8a9a7b">Secundario</label>
+        <label class="swatch"><input type="color" value="#ffffff">Extra</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Revisión de consistencia</h2>
+      <div class="box checks">
+        <span>Forma de la cara</span><span>Color de ojos</span><span>Patrón del pelaje</span>
+        <span>Proporciones</span><span>Expresión</span><span>Accesorios</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Notas</h2>
+      <div class="box lines" style="min-height:40mm" contenteditable="true"></div>
+    </section>
+
+    <footer>
+      <span>© Kim &amp; Klóe — KimKlo</span>
+      <span>Hoja 1 / 1</span>
+    </footer>
+  </main>
+
+<script>
+  // Cargar imagen de referencia localmente (no se sube a ningún sitio)
+  document.querySelectorAll('.image-box').forEach(box => {
+    const input = box.querySelector('input');
+    input.addEventListener('change', () => {
+      const file = input.files[0];
+      if (!file) return;
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+      box.querySelector('span')?.remove();
+      box.querySelector('img')?.remove();
+      box.appendChild(img);
+    });
+  });
+</script>
+</body>
+</html>
