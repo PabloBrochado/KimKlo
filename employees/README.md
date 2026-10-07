@@ -1,12 +1,14 @@
 # Employees & Relax Space
 
-Página de KimKlo con las **fichas de empleados** de Kim, Klóe y Mimí («We Work for Food (or Tricks)») y el **Relax Space** con juegos, cada uno con su ficha.
+Página de KimKlo con las **fichas de empleados** de Kim, Klóe y Mimí (la gatita negra que nació durante la construcción de la casa) («We Work for Food (or Tricks)») y el **Relax Space** con juegos, cada uno con su ficha.
 
 ## Contenido
 
 - `index.html`: la página completa en un solo archivo, sin dependencias.
 - `fichas-empleados.pdf`: las 3 fichas de empleado listas para imprimir.
 - `fotos/`: pon aquí `kim.jpg`, `kloe.jpg` y `mimi.jpg`. Mientras no estén, se muestra un emoji.
+
+Mimo («El Hualu»), el antiguo jefe del barrio antes de que llegaran Kim y Klóe, aparece solo como parte de la historia en la cabecera.
 
 ## Partes semanales y empleado de la semana
 
