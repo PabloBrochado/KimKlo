@@ -1,16 +1,15 @@
-# Hoja para imprimir (PDF)
+# Hoja de paleta de colores
 
-Plantilla HTML lista para imprimir en A4 o guardar como PDF.
+Hoja A4 para tener los colores organizados por grupo (Marca, Kim, Klóe, Mimí y Fondos y neutros, con 6 colores por grupo).
 
 ## Uso
 
-1. Abre `index.html` en el navegador.
-2. Escribe directamente en los campos, elige los colores y haz clic en el recuadro de imagen para añadir una referencia.
-3. Pulsa **Imprimir / PDF** y elige *Guardar como PDF* (márgenes: *Ninguno*, activa *Gráficos de fondo*).
+- **En papel:** imprime `hoja-imprimir.pdf` (en blanco) y rellénala a mano.
+- **En el navegador:** abre `index.html`.
+  - Haz clic en un recuadro para elegir un color, o escribe el código HEX (por ejemplo `#C8794A`).
+  - El RGB se calcula solo.
+  - Escribe un nombre debajo de cada color.
+  - Para cambiar el título de un grupo, haz clic sobre él y escribe.
+  - Pulsa **Imprimir / PDF** y elige *Guardar como PDF* (márgenes: *Ninguno*, activa *Gráficos de fondo*).
 
-`hoja-imprimir.pdf` es la versión en blanco, lista para imprimir y rellenar a mano.
-
-## Personalizar
-
-- Tamaño de papel: cambia `@page { size: A4; }` por `Letter` para tamaño carta (y ajusta `.sheet` a `215.9mm × 279.4mm`).
-- Colores: variables CSS en `:root`.
+Los grupos y la cantidad de colores se cambian en `GROUPS` y `PER_GROUP` dentro de `index.html`.
