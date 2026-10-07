@@ -55,3 +55,17 @@ Usa `wordpress-bloque.html`: es la misma página, preparada para pegarla dentro 
 5. **Idiomas (WPML):** la página está en español. Para inglés y portugués, duplica la página desde WPML y traduce los textos del bloque.
 
 Los juegos van **dentro de esta misma página**, en la sección Relax Space, así que no hace falta otra página ni otro menú.
+
+## Botón «+» en la cabecera de kimklo.com
+
+`menu-mas.html` es un botón **+** para la cabecera, colocado antes de «Sigue la historia». Al pulsarlo abre un menú con:
+- **Juegos para peques** → `/play/`
+- **Rompecabezas** → `/play/puzzle.html`
+- **Staff & Relax Space** → `/employees/`
+
+Los textos salen solos en inglés, español o portugués según el idioma de la página. Se cierra al pulsar fuera o con Escape. En móvil también se ve (el botón «Sigue la historia» se oculta en pantallas pequeñas, pero el «+» no).
+
+**Cómo ponerlo (Elementor):**
+1. Edita la página de inicio con Elementor (en cada idioma, si la cabecera no es compartida).
+2. En la cabecera, dentro del contenedor de la derecha, arrastra un widget **HTML** entre los idiomas (EN ES PT) y el botón «Sigue la historia».
+3. Pega el contenido de `menu-mas.html` y actualiza.
