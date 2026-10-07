@@ -5,7 +5,7 @@ creative assets are proprietary, only code is MIT.
 
 ## Browser automation
 
-`agent-browser` is installed by `.claude/hooks/session-start.sh` in cloud sessions. Use it to
+`agent-browser` is installed by the startup kit (`startup-kit/`, run from `.claude/hooks/session-start.sh`) in cloud sessions. Use it to
 check kimklo.com and any page being built here:
 
     agent-browser open https://kimklo.com
