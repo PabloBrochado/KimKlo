@@ -19,3 +19,7 @@ Los grupos y la cantidad de colores se cambian en `GROUPS` y `PER_GROUP` dentro 
 `calendario-campana.pdf`: calendario imprimible de la campaña «Cada gato tiene su color» (8 oct – 8 nov 2026), con fecha, hora, medios, qué se publica y una columna para anotar resultados.
 
 Para cambiar fechas o publicaciones, edita la lista `PLAN` en `calendario.html` y vuelve a imprimir.
+
+# Paletas reales
+
+`paleta-gatos.pdf`: la hoja de paleta con los colores medidos en fotos y vídeos reales de Klóe (blanca y negra) y Mimí (negra).
