@@ -69,6 +69,8 @@
   .game-card p { margin: 0; font-size: 14px; }
   .meta { display: flex; gap: 8px; flex-wrap: wrap; }
   .chip { font-size: 12px; background: var(--bg); padding: 3px 10px; border-radius: 999px; }
+  .chip.age { background: color-mix(in srgb, var(--c) 16%, white); font-weight: 700; }
+  a.btn { text-decoration: none; display: inline-block; }
   .game-card .row { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 6px; }
   .best { font-size: 13px; color: var(--muted); }
 
@@ -214,7 +216,7 @@
 const STAFF = [
   {
     id: 'kim', name: 'Kim', color: 'var(--kim)', emoji: '😴', photo: 'fotos/kim.jpg', number: '001',
-    role: 'Director de Siestas', roleEn: 'Chief Nap Officer',
+    role: 'Directora de Siestas', roleEn: 'Chief Nap Officer',
     story: 'Se mudó al barrio con Klóe',
     schedule: '18 horas al día, sin pausas',
     skill: 'Dormirse en 3 segundos en cualquier superficie',
@@ -246,11 +248,17 @@ const STAFF = [
 
 // ───────── Juegos del Relax Space ─────────
 const GAMES = [
-  { id: 'feed', icon: '🐟', title: 'Feed the Staff', host: 'mimi', time: '30 s', level: 'Fácil',
+  { id: 'cuidar', icon: '🍼', title: 'Cuida a Kim y Klóe', host: 'kim', age: 'Peques · menos de 6 años', time: 'Libre', level: 'Muy fácil',
+    url: 'https://www.kimklo.com/play/',
+    how: 'Dales comida, agua, cepíllalas, juega con la lana y mándalas a dormir. Si llenas los 5 corazones, ¡fiesta!' },
+  { id: 'puzzle', icon: '🧩', title: 'Rompecabezas de Kim y Klóe', host: 'kloe', age: 'Niños · 4, 6 o 9 piezas', time: 'Libre', level: 'Fácil a media',
+    url: 'https://www.kimklo.com/play/puzzle.html',
+    how: 'Elige a Kim o a Klóe y arma su retrato. Empieza con 4 piezas y sube a 9 cuando te atrevas.' },
+  { id: 'feed', age: 'Para todos', icon: '🐟', title: 'Feed the Staff', host: 'mimi', time: '30 s', level: 'Fácil',
     how: 'Toca los peces antes de que desaparezcan para pagar el sueldo de la plantilla. ¡Cuidado con la aspiradora!' },
-  { id: 'memory', icon: '🧶', title: 'Memoria de la Siesta', host: 'kim', time: 'Sin límite', level: 'Media',
+  { id: 'memory', age: 'Para todos', icon: '🧶', title: 'Memoria de la Siesta', host: 'kim', time: 'Sin límite', level: 'Media',
     how: 'Kim ha escondido sus cosas favoritas. Encuentra todas las parejas con el menor número de intentos.' },
-  { id: 'gravity', icon: '🥛', title: '¿Quién tiró el vaso?', host: 'kloe', time: '30 s', level: 'Difícil',
+  { id: 'gravity', age: 'Para todos', icon: '🥛', title: '¿Quién tiró el vaso?', host: 'kloe', time: '30 s', level: 'Difícil',
     how: 'Klóe aparece en las mesas con un vaso. Tócala antes de que lo tire. Cada vez va más rápido.' }
 ];
 
@@ -337,11 +345,13 @@ function renderGames() {
       <div class="icon">${g.icon}</div>
       <h3>${g.title}</h3>
       <div class="host">Responsable: <b>${h.name}</b>, ${h.role}</div>
-      <div class="meta"><span class="chip">⏱ ${g.time}</span><span class="chip">🎯 ${g.level}</span></div>
+      <div class="meta"><span class="chip age">👶 ${g.age}</span><span class="chip">⏱ ${g.time}</span><span class="chip">🎯 ${g.level}</span></div>
       <p>${g.how}</p>
       <div class="row">
-        <span class="best">${best === null ? 'Sin récord todavía' : 'Tu récord: <b>' + best + '</b>'}</span>
-        <button class="btn" onclick="openGame('${g.id}')">Jugar</button>
+        ${g.url
+          ? `<span class="best">En kimklo.com/play</span><a class="btn" href="${g.url}" target="_blank" rel="noopener">Jugar ↗</a>`
+          : `<span class="best">${best === null ? 'Sin récord todavía' : 'Tu récord: <b>' + best + '</b>'}</span>
+        <button class="btn" onclick="openGame('${g.id}')">Jugar</button>`}
       </div>
     </article>`;
   }).join('');

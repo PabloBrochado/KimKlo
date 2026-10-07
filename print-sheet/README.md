@@ -22,4 +22,4 @@ Para cambiar fechas o publicaciones, edita la lista `PLAN` en `calendario.html` 
 
 # Paletas reales
 
-`paleta-gatos.pdf`: la hoja de paleta con los colores medidos en fotos y vídeos reales de Klóe (blanca y negra) y Mimí (negra).
+`paleta-gatos.pdf`: la hoja de paleta con los colores de Kim y Klóe (sacados de sus ilustraciones oficiales del juego y de fotos reales) y de Mimí (medidos en su vídeo).
