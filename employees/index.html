@@ -56,6 +56,10 @@
 
   /* Relax Space */
   .relax { background: var(--paper); margin-top: 40px; padding-bottom: 44px; }
+  .relax-photo { margin: 0 0 24px; border-radius: 18px; overflow: hidden; position: relative; }
+  .relax-photo img { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: 50% 45%; }
+  .relax-photo figcaption { position: absolute; left: 12px; bottom: 12px; background: rgba(43,36,32,.8); color: #fff;
+    font-size: 13px; padding: 6px 12px; border-radius: 999px; }
   .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
   .game-card { border: 1.5px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 10px; background: #fff; }
   .game-card .icon { font-size: 40px; }
@@ -181,6 +185,10 @@
   <div class="wrap">
     <h2>Relax Space</h2>
     <p class="sub">La sala de descanso de la plantilla. Cada juego tiene su ficha y un empleado responsable.</p>
+    <figure class="relax-photo">
+      <img src="fotos/relax-cama.jpg" alt="Gata negra descansando en su camita del patio" onerror="this.closest('figure').remove()">
+      <figcaption>Descanso reglamentario: la sala de relax, en pleno uso.</figcaption>
+    </figure>
     <div class="games" id="games"></div>
   </div>
 </section>
