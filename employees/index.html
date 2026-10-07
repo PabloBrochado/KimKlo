@@ -226,13 +226,13 @@ const STAFF = [
   },
   {
     id: 'mimi', name: 'Mimí', color: 'var(--mimi)', emoji: '🐈‍⬛', photo: 'fotos/mimi.jpg', number: '003',
-    role: 'Decana del Barrio · Control de Calidad', roleEn: 'Senior Quality Manager',
+    role: 'Decana del Barrio · Jefa de Operaciones', roleEn: 'Head of Operations',
     story: 'La gatita negra que nació durante la construcción de la casa. Hoy es la mayor del barrio',
-    schedule: 'Cada vez que el plato está vacío',
-    skill: 'Supervisa la casa desde antes de que estuviera terminada',
-    salary: 'En negociación permanente',
-    review: '★★★★★ — La veterana: exigente, pero justa',
-    quote: 'Yo estaba aquí antes que las paredes.'
+    schedule: 'Desde que sale el sol, sin quejarse',
+    skill: 'Hacer que todo funcione sin pedir aplausos',
+    salary: 'Lo que haya… y lo comparte',
+    review: '★★★★★ — Humilde y trabajadora: la que saca la oficina adelante',
+    quote: 'Yo no vine a posar, mi amor. Vine a trabajar.'
   }
 ];
 
@@ -252,12 +252,12 @@ const WEEKS = [
   {
     week: 'Semana del 5 al 11 de octubre de 2026',
     winner: 'mimi',
-    why: 'Por su inspección de obra número 1.000: revisó todos los rincones de la casa «para comprobar que siguen como los dejó la construcción». Es la mayor del barrio y nadie conoce esta casa mejor que ella.',
-    prize: '🏆 Premio: una lata extra y 10 minutos de mimos',
+    why: 'Por revisar la casa entera, recibir a los vecinos y mantener la oficina en orden sin pedir nada a cambio. Es la mayor del barrio y la que más trabaja, aunque nunca lo diga.',
+    prize: '🏆 Premio: una lata extra (que ya ha compartido con Kim y Klóe)',
     reports: [
       { who: 'kloe', text: 'Parte de incidencias: 2 bolígrafos, 1 tapón y 1 vaso (vacío, por suerte) tirados de la mesa. Klóe alega «investigación».' },
       { who: 'kim', text: 'Parte de asistencia: Kim no ha faltado a ninguna siesta. Se le ha visto despierto 4 veces, todas a la hora de comer.' },
-      { who: 'mimi', text: 'Parte de calidad: Mimí ha rechazado 3 comidas «por presentación». Se estudia su queja.' }
+      { who: 'mimi', text: 'Parte de trabajo: Mimí ha hecho turno doble y no ha pedido ni una lata extra. Recursos Gatunos está preocupado: nadie trabaja tanto por tan poco.' }
     ]
   }
 ];
@@ -391,7 +391,7 @@ const ENGINES = {
     };
     every(spawn, 520); spawn();
     countdown(30, () => finish(score, `¡Has pagado ${score} premios!`,
-      score >= 25 ? 'Mimí aprueba el control de calidad.' : 'Mimí dice que el plato sigue medio vacío.'));
+      score >= 25 ? 'Mimí está orgullosa de ti, mi amor.' : 'Mimí dice: «Tranquilo, mañana lo hacemos mejor».'));
   },
 
   // Parejas de memoria; récord = menos intentos
