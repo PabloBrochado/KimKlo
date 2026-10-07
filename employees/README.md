@@ -40,5 +40,18 @@ Los récords y los «premios pagados» se guardan solo en el navegador de cada v
 
 ## Ponerla en kimklo.com (WordPress)
 
-1. Sube la carpeta `employees/` (con `fotos/`) al servidor, por ejemplo a `kimklo.com/employees/`.
-2. En **Apariencia → Menús**, añade un enlace personalizado con el texto **Employees & Relax Space** y la URL `https://kimklo.com/employees/`.
+Usa `wordpress-bloque.html`: es la misma página, preparada para pegarla dentro de WordPress. Sus estilos van encerrados para que no choquen con el tema, y no lleva menú propio porque usa el de tu web.
+
+1. **Sube las fotos:** en **Medios → Añadir nuevo**, sube `kloe.jpg`, `mimi.jpg` y `relax-cama.jpg` (y `kim.jpg` cuando la tengas). Abre una de ellas y copia su URL, por ejemplo `https://kimklo.com/wp-content/uploads/2026/10/mimi.jpg`.
+2. **Indica la carpeta de las fotos:** en `wordpress-bloque.html`, cambia la línea `const FOTOS = '/wp-content/uploads/kimklo/';` por la carpeta de esa URL, sin el nombre del archivo. Por ejemplo: `const FOTOS = '/wp-content/uploads/2026/10/';`.
+3. **Crea la página:** en **Páginas → Añadir nueva**:
+   - Título: `Employees & Relax Space`.
+   - Enlace permanente: `employees`.
+   - Añade un bloque **HTML personalizado**, pega el archivo entero y publica.
+4. **Menú:** en **Apariencia → Menús** (o **Apariencia → Editor → Navegación** si el tema es de bloques), añade la página al menú principal, al lado de «Store». Si quieres submenú, añade dentro estos enlaces personalizados:
+   - `Partes` → `/employees/#partes`
+   - `Employees` → `/employees/#empleados`
+   - `Relax Space (juegos)` → `/employees/#relax`
+5. **Idiomas (WPML):** la página está en español. Para inglés y portugués, duplica la página desde WPML y traduce los textos del bloque.
+
+Los juegos van **dentro de esta misma página**, en la sección Relax Space, así que no hace falta otra página ni otro menú.
