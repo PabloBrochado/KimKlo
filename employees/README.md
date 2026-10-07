@@ -1,6 +1,6 @@
 # Employees & Relax Space
 
-Página de KimKlo con las **fichas de empleados** de Kim, Klóe y Mimí (la gatita negra que nació durante la construcción de la casa) («We Work for Food (or Tricks)») y el **Relax Space** con juegos, cada uno con su ficha.
+Página de KimKlo con las **fichas de empleados** de Kim, Klóe y Mimí (la gatita negra que nació durante la construcción de la casa y hoy es la mayor del barrio) («We Work for Food (or Tricks)») y el **Relax Space** con juegos, cada uno con su ficha.
 
 ## Contenido
 
